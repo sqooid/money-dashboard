@@ -1,4 +1,4 @@
-FROM node:22.2.0-alpine3.20
+FROM node:22.2.0-slim
 
 RUN npm install -g pnpm
 
@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install:browsers
 
 COPY build/ ./
 
